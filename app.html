@@ -3,33 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weekly Calendar</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
 </head>
+
 <body>
-
-    <header>
-
-    </header>
 
 
     <nav>
 
+        <div class="nav-title">
+            <p>Habitual</p>
+        </div>
+        <div class="nav-options">
+            <ul>
+                <li class="nav-start"><a href="app.html">Get Started</a></li>
+                <li class="nav-about"><a href="learn.html">About</a></li>
+            </ul>
+        </div>
+
     </nav>
 
-
     <main>
-        <a href="index.html"> home </a>
+
+        <div class="weekly-calendar" id="weekly-calendar"></div>
+        <div class="single-day-calendar" id="single-day-calendar"></div>
+        <aside class="calendar-sidebar">
+            <ul id="sidebar-days">
+                <li data-day="1" data-full="Monday"><span class="acronym">M</span></li>
+                <li data-day="2" data-full="Tuesday"><span class="acronym">T</span></li>
+                <li data-day="3" data-full="Wednesday"><span class="acronym">W</span></li>
+                <li data-day="4" data-full="Thursday"><span class="acronym">Th</span></li>
+                <li data-day="5" data-full="Friday"><span class="acronym">F</span></li>
+                <li data-day="6" data-full="Saturday"><span class="acronym">Sa</span></li>
+                <li data-day="0" data-full="Sunday"><span class="acronym">Su</span></li>
+            </ul>
+        </aside>
+
     </main>
 
-    
     <footer>
-
+        <div class="footer-content">
+            All Rights Reserved &copy; 2025
+        </div>
     </footer>
-    
+
+    <div id="duration-modal" class="duration-modal" style="display:none;">
+    <div class="duration-content">
+        <label for="duration-select">Select duration:</label>
+        <select id="duration-select">
+            <option value="15">15 minutes</option>
+            <option value="30" selected>30 minutes</option>
+            <option value="45">45 minutes</option>
+            <option value="60">1 hour</option>
+            <option value="90">1.5 hours</option>
+            <option value="120">2 hours</option>
+        </select>
+        <button id="confirm-duration">Confirm</button>
+    </div>
+</div>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
