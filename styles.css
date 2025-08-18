@@ -1,8 +1,8 @@
 :root {
     --coral: rgb(226, 131, 131);
     --dark-grey: rgb(23, 23, 23);
-    --white: rgb(206, 206, 206);
-    --sidebar-bg: rgba(23, 23, 23, 0.95);
+    --white: rgb(255, 255, 255);
+    --sidebar-bg: rgba(101, 100, 100, 0.955);
     --calendar-bg: rgba(206,206,206,0.08);
     --calendar-shadow: 0 2px 8px rgba(0,0,0,0.08);
     --sidebar-shadow: 0 2px 8px rgba(0,0,0,0.18);
@@ -43,9 +43,8 @@ nav {
     justify-content: space-between;
     align-items: center;
 }
-nav ul {
-    margin-top: 5px;
-}
+
+
 nav ul li {
     display: inline-block;
     margin-left: 12px;
@@ -85,6 +84,16 @@ nav ul li {
     text-decoration: none;
     border-radius: 15px;
     transition: font-size 0.3s ease, padding 0.3s ease;
+    transition: 0.5s;
+
+}
+
+.nav-start a:hover,
+.nav-about a:hover {
+    background-color: var(--coral);
+    color: var(--dark-grey);
+    box-shadow: 2px 2px 2px black;
+    transition: 0.5s;
 }
 
 /* Adjust size for smaller screens */
@@ -121,28 +130,71 @@ main {
     height: 100vh;
 }
 
-.content-section {
+.mini-asterisk {
+    font-size: 55px;
+    color: #ce8383;
+}
+
+.hero-img {
+    max-width: 1000px; /* Full width of the section */
+    height: 400px; /* Adjust height as needed */
+    margin: 30px 0px; /* Center the section */
+    padding: 10px 0px; /* Add padding for spacing */
+    border-radius: 30px;
+    background-image: url(./Yosemite\ and\ To-Do\ Note.png);
+    background-size: cover; /* Ensure the image covers the entire section */
+    background-position: center; /* Center the image */
+    margin: 0px 5px;
+}
+
+.content-section-title {
+    max-width: 500px;
+    line-height: 1;
+    font-size: 60px;
+    padding: 0px 50px;
+    text-align: left;
+    color: white;
+    position: absolute; /* Position the title relative to the parent */
+    bottom: 90px; /* Place the title 20px above the bottom of the image */
+}
+
+.content-section-body {
     max-width: 800px;
-    margin: 20px auto; /* Add some spacing around the section */
-    padding: 30px;
+    margin: 20px auto; /* Center the section with spacing */
+    padding: 30px; /* Inner padding for content */
     font-family: Arial, sans-serif;
     line-height: 1.8;
-    background-color: rgba(227, 227, 227, 0.8); /* Semi-transparent background */
-    color: #333; /* Dark text for readability */
+    color: #d7d7d7; /* Light text for readability */
+    border-bottom: 1px solid white; /* Single white border wrapping the content */
+    border-right: 1px solid white; /* Single white border wrapping the content */
     border-radius: 12px; /* Rounded corners for a modern look */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    border: 1px solid rgba(0, 0, 0, 0.1); /* Light border for definition */
-    backdrop-filter: blur(10px); /* Add blur effect */
+    background-color: transparent; /* Keep the background transparent */
+    backdrop-filter: blur(10px); /* Add blur effect for modern design */
     -webkit-backdrop-filter: blur(10px); /* Safari support */
+    transition: 0.3s;
 }
 
-.content-section p {
-    margin: 0;
-    font-size: 18px; /* Slightly larger font for readability */
+.content-section-body:hover {
+    border-bottom: 2px solid white; /* Single white border wrapping the content */
+    border-right: 4px solid white; /* Single white border wrapping the content */
+    transition: 1s;
 }
 
-.content-section span {
-    font-style: italic; /* Add emphasis to spans for a modern touch */
+.content-section-body p {
+    margin: 20px 0px;
+    font-size: 16px; /* Slightly larger font for readability */
+}
+
+.link {
+    color: rgb(140, 219, 140);
+    text-decoration: none;
+}
+
+#summary-exit {
+    font-size: 14px;
+    font-style: italic;
+    background-color: rgb(92, 92, 50);
 }
 
 /* Default styling for the screen-size warning (hidden by default) */
@@ -165,7 +217,7 @@ main {
 /* Media query for screens smaller than 391px */
 @media (max-width: 390px) {
     nav, main {
-        filter: blur(5px); /* Blur the entire page */
+        filter: blur(8px); /* Blur the entire page */
         pointer-events: none; /* Disable interactions with the page */
     }
 
@@ -299,7 +351,20 @@ main {
     gap: 100px;
     justify-content: center;
     margin: 50px 0 0 0;
+    margin-bottom: 20px;
 }
+
+.button-icon {
+    width: 20px; 
+    height: 20px;
+    filter: brightness(0); 
+    transition: filter 0.3s; 
+}
+
+.export-ics:hover .button-icon {
+    filter: brightness(1); /* Make the icon white on hover */
+}
+
 .start-button, .learn-button {
     border: 2px solid black;
     text-decoration: none;
@@ -368,17 +433,19 @@ footer {
     background: var(--calendar-bg);
     border-radius: 18px;
     box-shadow: var(--calendar-shadow);
-    padding: 24px 18px;
+    padding: 24px 22px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .single-day-date {
     font-size: 22px;
     font-weight: 300;
     margin-bottom: 16px;
     color: var(--coral);
 }
+
 .single-day-notes {
     width: 250px;
     height: 80px;
@@ -398,7 +465,6 @@ footer {
     background: rgb(255, 255, 255);
     color: var(--dark-grey);
     font-weight: 500;
-    margin: 5px;
 }
 
 /* Sidebar */
@@ -416,22 +482,24 @@ footer {
         transition: width 0.3s;
         width: 60px;
     }
+
+    .calendar-sidebar.expanded {
+        width: 180px;
+    }
 }
 
-.calendar-sidebar.expanded {
-    width: 180px;
-}
+
 .calendar-sidebar ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    text-align: center;
 }
 
 .calendar-sidebar li {
     font-size: 20px;
     color: var(--coral);
     margin: 12px 0;
-    text-align: left;
     font-weight: 500;
     letter-spacing: 2px;
     cursor: pointer;
@@ -497,13 +565,13 @@ footer {
         flex-direction: row; /* Align items horizontally */
         justify-content: center;
         align-items: center; /* Center items vertically within the flex container */
-        position: absolute; /* Float relative to the nearest positioned ancestor */
+        position: relative; /* Float relative to the nearest positioned ancestor */
         top: 50%; /* Position it in the middle of the screen */
         left: 50%; /* Center horizontally */
         transform: translate(-50%, -50%); /* Adjust for centering */
         width: 80%; /* Set the width to 80% of the screen */
         background-color: var(--sidebar-bg);
-        border-radius: 12px; /* Add rounded corners for a floating look */
+        border-radius: 10px; /* Add rounded corners for a floating look */
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
         padding: 10px 20px; /* Add padding for spacing */
         z-index: 1000; /* Ensure it stays above other elements */
@@ -530,8 +598,6 @@ footer {
 }
 
 
-
-
 /* Buttons */
 .save-single-day-notes,
 .add-entry,
@@ -539,14 +605,13 @@ footer {
 .delete-entry {
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     cursor: pointer;
     transition: background 0.2s, color 0.2s;
 }
 .save-single-day-notes,
 .add-entry {
-    margin: 3px;
     padding: 8px 20px;
     background: var(--coral);
     color: var(--dark-grey);
@@ -556,12 +621,21 @@ footer {
     background: var(--white);
     color: var(--coral);
 }
+
 .export-ics {
-    margin-top: 8px;
-    padding: 8px 20px;
-    background: var(--white);
-    color: var(--dark-grey);
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Vertically align icon and text */
+    gap: 8px; /* Add spacing between the icon and text */
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
 .export-ics:hover {
     background: var(--coral);
     color: var(--white);
@@ -569,8 +643,8 @@ footer {
 .delete-entry {
     background: var(--coral);
     color: var(--dark-grey);
-    border-radius: 6px;
-    padding: 4px 10px;
+    border-radius: 20px;
+    padding: 2px 10px;
 }
 .delete-entry:hover {
     background: var(--white);
@@ -585,7 +659,7 @@ footer {
     display: flex;
     align-items: center;
     gap: 12px;
-    background: rgba(206,206,206,0.15);
+    background: rgba(206, 206, 206, 0.437);
     border-radius: 8px;
     padding: 6px 12px;
     margin-bottom: 8px;
@@ -601,15 +675,23 @@ footer {
 .entry-form {
     display: flex;
     gap: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 40px;
+    background-color: rgb(231, 229, 229);
+    padding: 5px 5px;
+    border-radius: 10px;
 }
+
 .single-day-note {
     font-size: 16px;
     padding: 6px 12px;
     border-radius: 8px;
     border: 1px solid var(--coral);
-    background: rgb(255,255,255);
+    background: rgba(255, 255, 255, 0.405);
     color: var(--dark-grey);
+}
+
+.single-day-note::placeholder {
+    color: rgb(35, 35, 35);
 }
 
 /* Save Popup */

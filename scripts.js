@@ -43,20 +43,24 @@ document.addEventListener("DOMContentLoaded", function() {
             <span class="entry-time">${entry.time}</span>
             <span class="entry-note">${entry.note}</span>
             <span class="entry-duration">${entry.duration || 30} min</span>
-            <button class="delete-entry" data-idx="${idx}">Delete</button>
+            <button class="delete-entry" data-idx="${idx}">-</button>
         </div>
     `).join('');
 
     calendar.innerHTML = `
-        <div class="single-day-date">${date.toLocaleDateString(undefined, options)}</div>
-        <div class="entry-list">${entriesHtml}</div>
-        <div class="entry-form">
-            <select class="single-day-time">${timeOptions}</select>
-            <input type="text" class="single-day-note" placeholder="Insert task here...">
-            <button class="add-entry">Add</button>
-        </div>
-        <button class="export-ics">Export Week to .ics</button>
-    `;
+    <div class="single-day-date">${date.toLocaleDateString(undefined, options)}</div>
+    <div class="entry-list">${entriesHtml}</div>
+    <div class="entry-form">
+        <select class="single-day-time">${timeOptions}</select>
+        <input type="text" class="single-day-note" placeholder="Insert task here...">
+        <button class="add-entry">+</button>
+    </div>
+    <button class="export-ics">
+        Export Week to .ics
+        <img src="./download icon.svg" alt="Download Icon" class="button-icon">
+        
+    </button>
+`;
 
     // Modal logic
     const durationModal = document.getElementById('duration-modal');
