@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
     <div class="entry-list">${entriesHtml}</div>
     <div class="entry-form">
         <select class="single-day-time">${timeOptions}</select>
-        <input type="text" class="single-day-note" placeholder="Insert task here...">
+        <input type="text" class="single-day-note" placeholder="Type task here...">
         <button class="add-entry">+</button>
     </div>
     <button class="export-ics">
@@ -216,3 +216,41 @@ ${events}END:VCALENDAR`;
     }
 }
 
+// Function to show a notification
+function showNotification(message) {
+    const notificationContainer = document.getElementById('notification-container');
+
+    // Create the notification element
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+
+    notificationContainer.appendChild(notification);
+
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+// Event handler for the "add-entry" button
+document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('add-entry')) {
+        const noteInput = document.querySelector('.single-day-note');
+        const timeInput = document.querySelector('.single-day-time');
+        const noteText = noteInput.value.trim();
+        const timeValue = timeInput.value;
+
+        if (!noteText) {
+            showNotification('Please type a task before adding it.');
+            noteInput.focus();
+            return;
+        }
+
+        savedEntries.push({
+            time: timeValue,
+            note: noteText,
+            duration: 30, 
+        });
+
+    }
+});
