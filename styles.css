@@ -145,6 +145,35 @@ main {
     font-style: italic; /* Add emphasis to spans for a modern touch */
 }
 
+/* Default styling for the screen-size warning (hidden by default) */
+.screen-size-warning {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    color: var(--white);
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 20%; /* Center the text vertically */
+    z-index: 2000; /* Ensure it stays above all other elements */
+}
+
+/* Media query for screens smaller than 391px */
+@media (max-width: 390px) {
+    nav, main {
+        filter: blur(5px); /* Blur the entire page */
+        pointer-events: none; /* Disable interactions with the page */
+    }
+
+    .screen-size-warning {
+        display: block; /* Show the warning overlay */
+    }
+}
+
 /* Main container styling */
 .additional-info {
     display: flex;
