@@ -211,3 +211,4 @@ ${events}END:VCALENDAR`;
         document.body.removeChild(link);
     }
 }
+

@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Habitual | About </title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="H-clock.png">
 
 </head>
 <body>
@@ -19,7 +20,7 @@
 
     <nav>
         <div class="nav-title">
-            <p>Habitual</p>
+            <a class="nav-href" href="index.html">Habitual</a>
         </div>
 
         <div class="nav-options">
@@ -32,7 +33,47 @@
 
 
     <main>
-        <a href="index.html"> home </a>
+        <div class="content-section">
+            <p>
+                Welcome to <span class="red-span">Habitual</span>, a minimal productivity application designed to help you stay organized 
+                and build lasting habits without the distractions and clutter often found in traditional apps.
+                I created this project out of a personal need to simplify my workflow and stay consistent. 
+                Many productivity tools, such as <span class="red-span">Notion</span> or advanced calendars, can feel overwhelming with 
+                too many features that take more time to manage than the tasks themselves. <span class="red-span">Habitual</span> is built 
+                with simplicity at its core allowing you to quickly log tasks, assign them to a day or time, 
+                and focus on completing them, rather than spending hours learning how to use it.
+                Unlike complex scheduling tools, <span class="red-span">Habitual</span> supports both structured and spontaneous 
+                productivity styles. Whether you like to plan weeks ahead or prefer to add tasks on the spot, 
+                the app adapts to your habits. The inspiration also came from the idea that productivity isn’t 
+                just about checking boxes, it’s about forming routines in the <span class="red-span">simplest</span> way possible.
+            </p>
+        </div>
+
+        <div class="additional-info">
+            <!-- First Div: Map -->
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53634.79273929171!2d-117.162771!3d32.715738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d9530b3333b1b1%3A0x8e8b7b8b8b8b8b8b!2sSan%20Diego%2C%20CA!5e0!3m2!1sen!2sus!4v1697040000000!5m2!1sen!2sus" 
+                    width="100%" 
+                    height="300" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+    
+            <!-- Second Div: GitHub Profile -->
+            <div class="github-container">
+                <p>Reach out to me on GitHub:</p>
+                <a href="https://github.com/your-github-username" target="_blank" class="github-link">
+                    Visit My GitHub Profile
+                    <span class="github-preview">
+                        <img src="github_preview.png" alt="GitHub Profile Preview">
+                    </span>
+                </a>
+            </div>
+        </div>
     </main>
 
     

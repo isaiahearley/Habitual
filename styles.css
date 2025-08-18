@@ -36,7 +36,7 @@ nav {
     top: 15px;
     left: 0;
     z-index: 100;
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(3px);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     border-bottom: 1px solid rgba(206,206,206,0.15);
     border-radius: 90px;
@@ -50,34 +50,182 @@ nav ul li {
     display: inline-block;
     margin-left: 12px;
 }
+
+.nav-href {
+    text-decoration: none;
+    color: white;
+    font-weight: 100;
+    transition: 0.3s;
+
+}
+
+.nav-href:hover {
+    transition: 0.3s;
+    color: #ce8383;
+}
+
 .nav-title {
     padding: 5px 0 5px 32px;
     font-size: 26px;
 }
-.nav-options { 
+
+.nav-options {
     padding-right: 32px;
     display: flex;
     align-items: center;
 }
-.nav-start a, .nav-about a {
+
+/* Default styling for nav-start and nav-about */
+.nav-start a,
+.nav-about a {
     padding: 12px 24px;
     font-size: 20px;
     background-color: var(--white);
     color: black;
-    border-radius: 8px;
-    font-weight: 500;
     text-decoration: none;
-}
-.nav-start:hover a, .nav-about:hover a {
-    background-color: var(--coral);
-    color: var(--white);
-    transition: 0.3s;
-    box-shadow: 4px 4px 0px black;
+    border-radius: 15px;
+    transition: font-size 0.3s ease, padding 0.3s ease;
 }
 
+/* Adjust size for smaller screens */
+@media (max-width: 768px) {
+    .nav-start a,
+    .nav-about a {
+        font-size: 16px;
+        padding: 10px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-options {
+        display: flex; /* Ensure it's a flex container */
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align items to the left */
+        padding-right: 10px; /* Remove right padding */
+        gap: 10px; /* Add gap between buttons */
+    }
+
+    .nav-start a,
+    .nav-about a {
+        font-size: 14px;
+        padding: 8px 10px;
+        width: 100%; /* Make links take full width */
+        text-align: center; /* Center the text */
+    }
+}
+
+
 /* Main */
+
 main {
     height: 100vh;
+}
+
+.content-section {
+    max-width: 800px;
+    margin: 20px auto; /* Add some spacing around the section */
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    line-height: 1.8;
+    background-color: rgba(227, 227, 227, 0.8); /* Semi-transparent background */
+    color: #333; /* Dark text for readability */
+    border-radius: 12px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Light border for definition */
+    backdrop-filter: blur(10px); /* Add blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+}
+
+.content-section p {
+    margin: 0;
+    font-size: 18px; /* Slightly larger font for readability */
+}
+
+.content-section span {
+    font-style: italic; /* Add emphasis to spans for a modern touch */
+}
+
+/* Main container styling */
+.additional-info {
+    display: flex;
+    flex-wrap: wrap; /* Ensure scalability on smaller screens */
+    gap: 20px; /* Add space between the two divs */
+    margin-top: 20px;
+}
+
+.map-container,
+.github-container {
+    flex: 1 1 45%; /* Allow divs to scale and take up equal space */
+    min-width: 300px; /* Ensure a minimum width for smaller screens */
+    background-color: #d4d4d4; /* Light background for contrast */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.github-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative; /* For positioning the preview */
+    margin-bottom: 100px;
+}
+
+.github-container p {
+    color: black;
+}
+
+.github-link {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative; /* For positioning the preview */
+}
+
+.github-link:hover .github-preview {
+    display: block; /* Show the preview on hover */
+    animation: pop-out 1s ease-out; /* Trigger the pop-out animation */
+}
+
+.github-preview {
+    display: none; /* Hide the preview by default */
+    position: absolute;
+    top: -140px; /* Position above the link */
+    left: 150%;
+    transform: translateX(-50%) scale(1); /* Default scale */
+    width: 200px;
+    height: 200px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    overflow: hidden;
+    z-index: 10;
+    opacity: 1; /* Ensure it remains visible */
+}
+
+.github-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Pop-out animation */
+@keyframes pop-out {
+    0% {
+        transform: translateX(-50%) scale(0.4); /* Start slightly smaller */
+    }
+    50% {
+        transform: translateX(-50%) scale(1.1); /* Slightly larger for a "bounce" effect */
+    }
+    100% {
+        transform: translateX(-50%) scale(1); /* Settle at normal size */
+    }
 }
 
 /* Hero Section */
@@ -187,7 +335,7 @@ footer {
 /* Calendar Section */
 .single-day-calendar {
     margin: 80px auto 100px auto;
-    width: 550px;
+    width: 85%;
     background: var(--calendar-bg);
     border-radius: 18px;
     box-shadow: var(--calendar-shadow);
@@ -214,7 +362,6 @@ footer {
     resize: vertical;
 }
 .single-day-time {
-    margin-top: 12px;
     padding: 6px 12px;
     border-radius: 8px;
     border: 1px solid var(--coral);
@@ -222,21 +369,26 @@ footer {
     background: rgb(255, 255, 255);
     color: var(--dark-grey);
     font-weight: 500;
+    margin: 5px;
 }
 
 /* Sidebar */
-.calendar-sidebar {
-    position: fixed;
-    top: 120px;
-    right: 40px;
-    background: var(--sidebar-bg);
-    border-radius: 18px;
-    box-shadow: var(--sidebar-shadow);
-    padding: 18px 12px;
-    z-index: 101;
-    transition: width 0.3s;
-    width: 60px;
+@media (min-width: 769px) {
+    
+    .calendar-sidebar {
+        position: fixed;
+        top: 120px;
+        right: 40px;
+        background: var(--sidebar-bg);
+        border-radius: 18px;
+        box-shadow: var(--sidebar-shadow);
+        padding: 18px 12px;
+        z-index: 101;
+        transition: width 0.3s;
+        width: 60px;
+    }
 }
+
 .calendar-sidebar.expanded {
     width: 180px;
 }
@@ -245,6 +397,7 @@ footer {
     padding: 0;
     margin: 0;
 }
+
 .calendar-sidebar li {
     font-size: 20px;
     color: var(--coral);
@@ -258,6 +411,7 @@ footer {
     position: relative;
     padding-left: 10px;
 }
+
 .calendar-sidebar li .full-day {
     display: none;
     position: absolute;
@@ -267,6 +421,7 @@ footer {
     font-size: 18px;
     background: none;
 }
+
 .calendar-sidebar.expanded li .full-day {
     display: inline;
 }
@@ -281,10 +436,72 @@ footer {
     transition: opacity 0.7s;
     opacity: 1;
 }
+
 .calendar-sidebar.expanded li .acronym {
     opacity: 0;
     transition-delay: 0.1s;
 }
+
+/* Default styling for sidebar-days */
+#sidebar-days {
+    display: flex;
+    flex-direction: column; /* Default: stack items vertically */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sidebar-days li {
+    margin: 10px 0; /* Add spacing between items */
+    text-align: center;
+}
+
+#sidebar-days li .acronym {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Media query for screens 768px or smaller */
+@media (max-width: 768px) {
+    /* Adjust #sidebar-days to float in the middle of the screen */
+    #sidebar-days {
+        flex-direction: row; /* Align items horizontally */
+        justify-content: center;
+        align-items: center; /* Center items vertically within the flex container */
+        position: absolute; /* Float relative to the nearest positioned ancestor */
+        top: 50%; /* Position it in the middle of the screen */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Adjust for centering */
+        width: 80%; /* Set the width to 80% of the screen */
+        background-color: var(--sidebar-bg);
+        border-radius: 12px; /* Add rounded corners for a floating look */
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+        padding: 10px 20px; /* Add padding for spacing */
+        z-index: 1000; /* Ensure it stays above other elements */
+    }
+
+    #sidebar-days li {
+        margin: 0 10px; /* Add horizontal spacing between items */
+    }
+
+    /* Prevent full-day from being displayed on hover */
+    #sidebar-days li .full-day {
+        display: none !important; /* Forcefully hide full-day */
+    }
+
+    /* Ensure .calendar-sidebar does not interfere */
+    .calendar-sidebar {
+        margin-top: 20px; /* Add spacing to avoid overlap with #sidebar-days */
+    }
+
+    .calendar-sidebar.expanded li .acronym {
+        opacity: 1;
+    }
+    
+}
+
+
+
 
 /* Buttons */
 .save-single-day-notes,
@@ -300,7 +517,7 @@ footer {
 }
 .save-single-day-notes,
 .add-entry {
-    margin-top: 12px;
+    margin: 3px;
     padding: 8px 20px;
     background: var(--coral);
     color: var(--dark-grey);
