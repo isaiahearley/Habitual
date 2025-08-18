@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const dayKey = getDayKey(date);
     const savedEntries = JSON.parse(localStorage.getItem(dayKey + '-entries') || "[]");
 
-    // Generate time options: AM first, then PM
+    // Create time options for users to select; AM first, then PM
     let timeOptions = "";
     ["AM", "PM"].forEach(ampm => {
         for (let h = 1; h <= 12; h++) {
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Render all saved entries
+    // Renders all saved entries
     let entriesHtml = savedEntries.map((entry, idx) => `
         <div class="entry-row">
             <span class="entry-time">${entry.time}</span>
