@@ -183,7 +183,7 @@ function exportWeekToICS() {
             const endMinuteStr = String(endMinute).padStart(2, '0');
             const dtEnd = `${yyyy}${mm}${dd}T${endHourStr}${endMinuteStr}00`;
 
-            const summary = `Notes for ${date.toLocaleDateString(undefined, options)}`;
+            const summary = entry.note.length > 0 ? entry.note : `Notes for ${date.toLocaleDateString(undefined, options)}`;
             const description = entry.note.replace(/\n/g, '\\n');
 
             events +=
@@ -245,12 +245,6 @@ document.addEventListener('click', function (e) {
             noteInput.focus();
             return;
         }
-
-        savedEntries.push({
-            time: timeValue,
-            note: noteText,
-            duration: 30, 
-        });
 
     }
 });
